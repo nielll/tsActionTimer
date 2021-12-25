@@ -1,5 +1,4 @@
 "use strict";
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 class StaticTiming {
 }
@@ -31,7 +30,6 @@ class Timer {
     }
 }
 exports.default = Timer;
-_a = Timer;
 Timer.now = new Date(Date.now());
 Timer.correctTimeOffset = (date) => {
     const timeZoneOffset = Timer.now.getTimezoneOffset() * 60 * 1000;
@@ -40,8 +38,8 @@ Timer.correctTimeOffset = (date) => {
 Timer.toString = () => {
     const regexDate = /^.*\s/g;
     const regexTime = /\s.*$/g;
-    const matchesDate = _a.now.toLocaleString().match(regexDate);
-    const matchesTime = _a.now.toLocaleString().match(regexTime);
+    const matchesDate = Timer.now.toLocaleString().match(regexDate);
+    const matchesTime = Timer.now.toLocaleString().match(regexTime);
     const [day, month, year] = matchesDate[0].trim().split('.');
     const [hour, minutes, seconds] = matchesTime[0].trim().split(':');
     return `${day}.${month}.${year} ${hour}:${minutes}:${seconds}`;

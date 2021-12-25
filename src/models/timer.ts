@@ -56,8 +56,8 @@ export default class Timer implements ITimer, StaticTiming {
   public static toString = (): string => {
     const regexDate = /^.*\s/g
     const regexTime = /\s.*$/g
-    const matchesDate = this.now.toLocaleString().match(regexDate)
-    const matchesTime = this.now.toLocaleString().match(regexTime)
+    const matchesDate = Timer.now.toLocaleString().match(regexDate)
+    const matchesTime = Timer.now.toLocaleString().match(regexTime)
 
     const [day, month, year] = matchesDate[0].trim().split('.')
     const [hour, minutes, seconds] = matchesTime[0].trim().split(':')

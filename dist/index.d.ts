@@ -1,11 +1,11 @@
 declare global {
     interface Window {
-        tsBackTimer: any;
+        tsAttackTimer: any;
     }
 }
-export default class TsBackTimerLibrary {
+export default class TsAttackTimerLibrary {
     private _container;
     constructor();
-    static init(tsBackTimer: TsBackTimerLibrary): void;
+    static init(tsAttackTimer: TsAttackTimerLibrary): void;
     private execution;
 }
