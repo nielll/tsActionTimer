@@ -26,12 +26,14 @@ class Timer {
         const now = Timer.now().getTime();
         const timedActionMs = timedAction.getTime() - now;
         const x = setInterval(function () {
-            const timeNow = new Date().getTime();
+            const timeNow = new Date();
             const regexString = /\(.*\)/;
-            timerInputElement.value = timerInputElementValue.replace(regexString, '') + " " + Timer.getMsFormated(timedActionMs - (timeNow - now));
+            timerInputElement.value = timerInputElementValue.replace(regexString, '') + " " + Timer.getMsFormated(timedActionMs - (timeNow.getTime() - now));
             // If the count down is finished, click button
-            if (timedActionMs - (timeNow - now) - 230 <= 0) {
-                console.log("Attack at: [ms - now]" + timedActionMs + " [ms]: " + timedAction.getTime());
+            if (timedActionMs - (timeNow.getTime() - now) <= 0) {
+                console.log("Executed [date]:" + Timer.toString());
+                console.log("Action [ms]: " + timedAction.getTime());
+                console.log("Action executed [date]: " + timeNow.toDateString() + " ms: " + timeNow.getMilliseconds());
                 timerInputElement.value = timerInputElementValue.replace(regexString, '');
                 clearInterval(x);
                 if (actionButtonElement)
@@ -62,8 +64,8 @@ Timer.correctTimeOffset = (date) => {
 Timer.toString = () => {
     const regexDate = /^.*\s/g;
     const regexTime = /\s.*$/g;
-    const matchesDate = Timer.now.toLocaleString().match(regexDate);
-    const matchesTime = Timer.now.toLocaleString().match(regexTime);
+    const matchesDate = Timer.now().toLocaleString().match(regexDate);
+    const matchesTime = Timer.now().toLocaleString().match(regexTime);
     const [day, month, year] = matchesDate[0].trim().split('.');
     const [hour, minutes, seconds] = matchesTime[0].trim().split(':');
     return `${day}.${month}.${year} ${hour}:${minutes}:${seconds}`;
