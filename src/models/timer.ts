@@ -47,21 +47,26 @@ export default class Timer implements ITimer, StaticTiming {
     const x = setInterval(function () {
       const timeNow = new Date()
       const regexString = /\(.*\)/
-      timerInputElement.value = timerInputElementValue.replace(regexString,'') + " " + Timer.getMsFormated(
-       timedActionMs - (timeNow.getTime() - now)
-      )
+
+      if (timedActionMs - (timeNow.getTime() - now) <= 0) {
+       timerInputElement.value = 
+        timerInputElementValue.replace(regexString,'') + " " + Timer.getMsFormated(timedActionMs - (timeNow.getTime() - now))
+      } else {
+       timerInputElement.value = 
+        timerInputElementValue.replace(regexString,'') + " " + Timer.getMsFormated(0)
+      }
+        
 
       // If the count down is finished, click button
       if (timedActionMs - (timeNow.getTime() - now) <= 0) {
-       console.log("Executed [date]: " + Timer.toString() + " ms: " + Timer.now().getMilliseconds())
-       console.log("Action [ms]: " + timedAction.getTime())
-       console.log("Action executed [date]: " + Timer.toString(timeNow) + " ms: " + timeNow.getMilliseconds())
+       console.log("Action timed [date]: " + Timer.toString(timedAction) + ":" + timedAction.getMilliseconds())
+       console.log("Action executed [date]: " + Timer.toString(timeNow) + ":" + timeNow.getMilliseconds())
        
        timerInputElement.value = timerInputElementValue.replace(regexString,'')
        clearInterval(x)
        if (actionButtonElement) actionButtonElement.click()
       }
-    }, 1000)
+    }, 1)
 
     return x;
   }

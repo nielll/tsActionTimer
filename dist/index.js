@@ -40,7 +40,7 @@ class TsAttackTimerLibrary {
         const trs = tbody.getElementsByTagName('tr');
         if (!container || !tbody || !trs)
             return;
-        console.log(`===== Start Initialization: ${timer_1.default.now} =====`);
+        console.log(`===== Start Initialization: ${timer_1.default.now()} =====`);
         if (container.getElementsByTagName('button').length > 0)
             return console.error('tsAttackTimer already running, please refresh and rerun script!');
         //Append tr

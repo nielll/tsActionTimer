@@ -29,7 +29,7 @@ export default class TsAttackTimerLibrary {
    const trs = tbody.getElementsByTagName('tr')
    
    if (!container || !tbody || !trs) return
-   console.log(`===== Start Initialization: ${Timer.now} =====`)
+   console.log(`===== Start Initialization: ${Timer.now()} =====`)
 
     if (container.getElementsByTagName('button').length > 0)
       return console.error(
