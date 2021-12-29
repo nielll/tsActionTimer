@@ -30,7 +30,9 @@ class Timer {
             const regexString = /\(.*\)/;
             timerInputElement.value = timerInputElementValue.replace(regexString, '') + " " + Timer.getMsFormated(timedActionMs - (timeNow - now));
             // If the count down is finished, click button
-            if (timedActionMs - (timeNow - now) <= 0) {
+            if (timedActionMs - (timeNow - now) - 230 <= 0) {
+                console.log("Attack at: [ms - now]" + timedActionMs + " [ms]: " + timedAction.getTime());
+                timerInputElement.value = timerInputElementValue.replace(regexString, '');
                 clearInterval(x);
                 if (actionButtonElement)
                     actionButtonElement.click();
