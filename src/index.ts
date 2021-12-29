@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-export default class TsAttackTimerLibrary {
+export default class TsActionTimerLibrary {
   private _container: HTMLElement
   private timedId: number
 
@@ -24,7 +24,7 @@ export default class TsAttackTimerLibrary {
     }
   }
 
-  public static init(tsAttackTimer: TsAttackTimerLibrary) {
+  public static init(tsAttackTimer: TsActionTimerLibrary) {
    const container = tsAttackTimer._container
    const tbody = container.getElementsByTagName('tbody')[0]
    const trs = tbody.getElementsByTagName('tr')

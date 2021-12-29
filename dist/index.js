@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const timer_1 = require("./models/timer");
 const workerTimers = require("worker-timers");
-class TsAttackTimerLibrary {
+class TsActionTimerLibrary {
     constructor() {
         this.execution = () => {
             if (this.timedId)
@@ -66,4 +66,4 @@ class TsAttackTimerLibrary {
         };
     }
 }
-exports.default = TsAttackTimerLibrary;
+exports.default = TsActionTimerLibrary;

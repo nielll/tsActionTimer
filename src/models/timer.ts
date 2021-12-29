@@ -46,6 +46,7 @@ export default class Timer implements ITimer, StaticTiming {
     const now = Timer.now().getTime()
     const timedActionMs = timedAction.getTime() - now
 
+    // Set Action delay
     const x = workerTimers.setInterval(function () {
       const timeNow = new Date()
       const regexString = /\(.*\)/

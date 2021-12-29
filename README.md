@@ -1,24 +1,17 @@
-# ts-boilerplate
+# tsActionTimer
 
-Minimal boilerplate for typescript projects.
+This script enhances the tribal war game by executing a timed action (attack or support) on the command popup
 
-Cloning:
-
-```bash
-git clone git@github.com:ivpusic/ts-boilerplate.git
-```
+[Bookmarklet](javascript:$.ajaxSetup({dataType:"script"});$.getScript('https://nielll.github.io/tsattacktimer/public/dist/bundle.js').done(function() {tsAttackTimer.init(new tsAttackTimer())}))
 
 Commands:
 
 ```bash
-# transpile ts to js
-yarn run build
+# run locally
+npm run serve
 
-# start bin/index.ts
-yarn run bin
-
-# run tests
-yarn run test
+# build for production
+npm run build
 ```
 
 ## License

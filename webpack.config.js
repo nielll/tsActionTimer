@@ -5,7 +5,7 @@ module.exports = {
    output: {
        filename: "bundle.js",
        path: path.resolve(__dirname, 'public/dist'),
-       library: 'tsAttackTimer', //add this line to enable re-use
+       library: 'tsActionTimer', //add this line to enable re-use
        libraryExport: 'default',  // export the default as window.MyClass
    },
    resolve: {

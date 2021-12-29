@@ -3,10 +3,10 @@ declare global {
         tsAttackTimer: any;
     }
 }
-export default class TsAttackTimerLibrary {
+export default class TsActionTimerLibrary {
     private _container;
     private timedId;
     constructor();
-    static init(tsAttackTimer: TsAttackTimerLibrary): void;
+    static init(tsAttackTimer: TsActionTimerLibrary): void;
     execution: () => void;
 }
