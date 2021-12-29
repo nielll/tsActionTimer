@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const timer_1 = require("./models/timer");
+const workerTimers = require("worker-timers");
 class TsAttackTimerLibrary {
     constructor() {
         this.execution = () => {
             if (this.timedId)
-                clearInterval(this.timedId);
+                workerTimers.clearInterval(this.timedId);
             const tbody = this._container.getElementsByTagName('tbody')[0];
             const trs = tbody.getElementsByTagName('tr');
             const duration = trs[2].innerHTML;
@@ -16,7 +17,7 @@ class TsAttackTimerLibrary {
             if (timer_1.default.now().getTime() > (timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration))) {
                 alert('Time for attack is already passed!');
                 if (this.timedId)
-                    clearInterval(this.timedId);
+                    workerTimers.clearInterval(this.timedId);
                 return;
             }
             this.timedId = timer_1.default.updateTimeDOM(timedActionToDate, timerElement, timerElement.value, actionButtonElement);

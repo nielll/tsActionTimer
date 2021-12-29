@@ -1,3 +1,5 @@
+import * as workerTimers from 'worker-timers';
+
 abstract class StaticTiming {
   static now: Date
 }
@@ -40,11 +42,11 @@ export default class Timer implements ITimer, StaticTiming {
    timerInputElement: HTMLInputElement,
    timerInputElementValue: string,
    actionButtonElement: HTMLElement
-  ): NodeJS.Timeout {
+  ): number {
     const now = Timer.now().getTime()
     const timedActionMs = timedAction.getTime() - now
 
-    const x = setInterval(function () {
+    const x = workerTimers.setInterval(function () {
       const timeNow = new Date()
       const regexString = /\(.*\)/
 
@@ -55,7 +57,6 @@ export default class Timer implements ITimer, StaticTiming {
        timerInputElement.value = 
         timerInputElementValue.replace(regexString,'') + " " + Timer.getMsFormated(0)
       }
-        
 
       // If the count down is finished, click button
       if (timedActionMs - (timeNow.getTime() - now) <= 0) {
@@ -63,7 +64,7 @@ export default class Timer implements ITimer, StaticTiming {
        console.log("Action executed [date]: " + Timer.toString(timeNow) + ":" + timeNow.getMilliseconds())
        
        timerInputElement.value = timerInputElementValue.replace(regexString,'')
-       clearInterval(x)
+       workerTimers.clearInterval(x)
        if (actionButtonElement) actionButtonElement.click()
       }
     }, 1)

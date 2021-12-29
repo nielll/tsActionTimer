@@ -1,4 +1,5 @@
 import Timer from './models/timer'
+import * as workerTimers from 'worker-timers';
 
 declare global {
   interface Window {
@@ -8,7 +9,7 @@ declare global {
 
 export default class TsAttackTimerLibrary {
   private _container: HTMLElement
-  private timedId: NodeJS.Timeout
+  private timedId: number
 
   constructor() {
     const container = document.getElementById('popup_box_popup_command')
@@ -60,7 +61,7 @@ export default class TsAttackTimerLibrary {
   }
 
   public execution = () => {
-   if (this.timedId) clearInterval(this.timedId)
+   if (this.timedId) workerTimers.clearInterval(this.timedId)
    const tbody = this._container.getElementsByTagName('tbody')[0]
    const trs = tbody.getElementsByTagName('tr')
 
@@ -72,7 +73,7 @@ export default class TsAttackTimerLibrary {
 
    if (Timer.now().getTime() > (Timer.generateDateFromString(timedAction).getTime()- Timer.getMsFromString(duration))) {
     alert('Time for attack is already passed!')
-    if (this.timedId) clearInterval(this.timedId)
+    if (this.timedId) workerTimers.clearInterval(this.timedId)
     return
    }
 

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const workerTimers = require("worker-timers");
 class StaticTiming {
 }
 class Timer {
@@ -25,7 +26,7 @@ class Timer {
     static updateTimeDOM(timedAction, timerInputElement, timerInputElementValue, actionButtonElement) {
         const now = Timer.now().getTime();
         const timedActionMs = timedAction.getTime() - now;
-        const x = setInterval(function () {
+        const x = workerTimers.setInterval(function () {
             const timeNow = new Date();
             const regexString = /\(.*\)/;
             if (timedActionMs - (timeNow.getTime() - now) > 0) {
@@ -41,7 +42,7 @@ class Timer {
                 console.log("Action timed [date]: " + Timer.toString(timedAction) + ":" + timedAction.getMilliseconds());
                 console.log("Action executed [date]: " + Timer.toString(timeNow) + ":" + timeNow.getMilliseconds());
                 timerInputElement.value = timerInputElementValue.replace(regexString, '');
-                clearInterval(x);
+                workerTimers.clearInterval(x);
                 if (actionButtonElement)
                     actionButtonElement.click();
             }
