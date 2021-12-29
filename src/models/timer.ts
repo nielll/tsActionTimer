@@ -52,7 +52,8 @@ export default class Timer implements ITimer, StaticTiming {
       )
 
       // If the count down is finished, click button
-      if (timedActionMs - (timeNow - now) <= 0) {
+      if (timedActionMs - (timeNow - now) - 230 <= 0) {
+        timerInputElement.value = timerInputElementValue.replace(regexString,'')
         clearInterval(x)
         if (actionButtonElement) actionButtonElement.click()
       }
