@@ -12,6 +12,6 @@ export default class Timer implements ITimer, StaticTiming {
     static updateTimeDOM(timedAction: Date, timerInputElement: HTMLInputElement, timerInputElementValue: string, actionButtonElement: HTMLElement): NodeJS.Timeout;
     static generateDateFromString(date: string): Date;
     static correctTimeOffset: (date: Date) => Date;
-    static toString: () => string;
+    static toString: (date?: Date) => string;
 }
 export {};

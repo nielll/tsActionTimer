@@ -53,9 +53,9 @@ export default class Timer implements ITimer, StaticTiming {
 
       // If the count down is finished, click button
       if (timedActionMs - (timeNow.getTime() - now) <= 0) {
-       console.log("Executed [date]:" + Timer.toString())
+       console.log("Executed [date]: " + Timer.toString() + " ms: " + Timer.now().getMilliseconds())
        console.log("Action [ms]: " + timedAction.getTime())
-       console.log("Action executed [date]: " + timeNow.toDateString() + " ms: " + timeNow.getMilliseconds())
+       console.log("Action executed [date]: " + Timer.toString(timeNow) + " ms: " + timeNow.getMilliseconds())
        
        timerInputElement.value = timerInputElementValue.replace(regexString,'')
        clearInterval(x)
@@ -89,11 +89,11 @@ export default class Timer implements ITimer, StaticTiming {
     return new Date(date.getTime() - timeZoneOffset)
   }
 
-  public static toString = (): string => {
+  public static toString = (date?: Date): string => {
     const regexDate = /^.*\s/g
     const regexTime = /\s.*$/g
-    const matchesDate = Timer.now().toLocaleString().match(regexDate)
-    const matchesTime = Timer.now().toLocaleString().match(regexTime)
+    const matchesDate = date ? date.toLocaleString().match(regexDate) : Timer.now().toLocaleString().match(regexDate)
+    const matchesTime = date ? date.toLocaleString().match(regexTime) : Timer.now().toLocaleString().match(regexTime)
 
     const [day, month, year] = matchesDate[0].trim().split('.')
     const [hour, minutes, seconds] = matchesTime[0].trim().split(':')
