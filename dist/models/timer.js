@@ -28,7 +28,7 @@ class Timer {
         const x = setInterval(function () {
             const timeNow = new Date();
             const regexString = /\(.*\)/;
-            if (timedActionMs - (timeNow.getTime() - now) <= 0) {
+            if (timedActionMs - (timeNow.getTime() - now) > 0) {
                 timerInputElement.value =
                     timerInputElementValue.replace(regexString, '') + " " + Timer.getMsFormated(timedActionMs - (timeNow.getTime() - now));
             }
