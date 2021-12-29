@@ -1,6 +1,6 @@
 This script enhances the tribal war game by executing a timed action (attack or support) on the command popup
 
-[ActionTimer](javascript:$.ajaxSetup({dataType:"script"});$.getScript('https://nielll.github.io/tsattacktimer/public/dist/bundle.js').done(function() {tsAttackTimer.init(new tsAttackTimer())}))
+[ActionTimer](javascript:$.ajaxSetup({dataType:"script"});$.getScript('https://nielll.github.io/tsattacktimer/public/dist/bundle.js').done(function() {tsActionTimer.init(new tsActionTimer())}))
 
 Commands:
 
