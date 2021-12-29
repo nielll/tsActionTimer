@@ -5,7 +5,8 @@ declare global {
 }
 export default class TsAttackTimerLibrary {
     private _container;
+    private timedId;
     constructor();
     static init(tsAttackTimer: TsAttackTimerLibrary): void;
-    private execution;
+    execution: () => void;
 }

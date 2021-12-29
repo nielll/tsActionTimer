@@ -9,6 +9,18 @@ export default class Timer implements ITimer, StaticTiming {
 
   constructor() {}
 
+  public static getMsFromString(time: string) {
+   // e.g. 00:15:15
+   const regex = /\d+/g
+   const matches = time.match(regex)
+
+   const hour = Number(matches[0]) * 60 * 60 * 1000
+   const minutes = Number(matches[1]) * 60 * 1000
+   const seconds = Number(matches[2]) * 1000
+
+   return hour + minutes + seconds
+  }
+
   public static getMsFormated(time) {
     var hours = time / 60 / 60 / 1000
     var minutes = (time - Math.floor(hours) * 3600 * 1000) / 60 / 1000
@@ -24,28 +36,47 @@ export default class Timer implements ITimer, StaticTiming {
   }
 
   public static updateTimeDOM(
-    id: string,
-    autoReturnAt: Date,
-    element: HTMLTableRowElement
-  ) {
+   timedAction: Date,
+   timerInputElement: HTMLInputElement,
+   timerInputElementValue: string,
+   actionButtonElement: HTMLElement
+  ): NodeJS.Timeout {
     const now = Timer.now.getTime()
-    const autoReturnMs = autoReturnAt.getTime() - now
+    const timedActionMs = timedAction.getTime() - now
 
     const x = setInterval(function () {
       const timeNow = new Date().getTime()
-      document.getElementById(id).innerHTML = Timer.getMsFormated(
-        autoReturnMs - (timeNow - now)
+      const regexString = /\(.*\)/
+      timerInputElement.value = timerInputElementValue.replace(regexString,'') + " " + Timer.getMsFormated(
+       timedActionMs - (timeNow - now)
       )
 
       // If the count down is finished, click button
-      if (autoReturnMs - (timeNow - now) <= 0) {
+      if (timedActionMs - (timeNow - now) <= 0) {
         clearInterval(x)
-        let button: HTMLElement = element.getElementsByClassName(
-          'command-cancel'
-        )[0] as HTMLElement
-        if (button) button.click()
+        if (actionButtonElement) actionButtonElement.click()
       }
     }, 1000)
+
+    return x;
+  }
+
+  public static generateDateFromString(date: string): Date {
+    const regex = /\d+/g
+    const matches = date.match(regex)
+ 
+    const day = Number(matches[0])
+    const month = Number(matches[1]) - 1
+    const year = Number(matches[2])
+ 
+    const hours = Number(matches[3])
+    const minutes = Number(matches[4])
+    const seconds = Number(matches[5])
+    const ms = Number(matches[6]) ? Number(matches[6]) : 0
+ 
+    return new Date(
+      new Date(year, month, day, hours, minutes, seconds).setMilliseconds(ms)
+    )
   }
 
   public static correctTimeOffset = (date: Date) => {
