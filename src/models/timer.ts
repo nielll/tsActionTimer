@@ -5,7 +5,7 @@ abstract class StaticTiming {
 interface ITimer {}
 
 export default class Timer implements ITimer, StaticTiming {
-  public static readonly now: Date = new Date(Date.now())
+  public static readonly now = (): Date => new Date(new Date(Date.now()).setMilliseconds(0))
 
   constructor() {}
 
@@ -41,7 +41,7 @@ export default class Timer implements ITimer, StaticTiming {
    timerInputElementValue: string,
    actionButtonElement: HTMLElement
   ): NodeJS.Timeout {
-    const now = Timer.now.getTime()
+    const now = Timer.now().getTime()
     const timedActionMs = timedAction.getTime() - now
 
     const x = setInterval(function () {
@@ -82,7 +82,7 @@ export default class Timer implements ITimer, StaticTiming {
   }
 
   public static correctTimeOffset = (date: Date) => {
-    const timeZoneOffset = Timer.now.getTimezoneOffset() * 60 * 1000
+    const timeZoneOffset = Timer.now().getTimezoneOffset() * 60 * 1000
     return new Date(date.getTime() - timeZoneOffset)
   }
 

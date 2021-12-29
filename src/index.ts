@@ -38,7 +38,7 @@ export default class TsAttackTimerLibrary {
 
     //Append tr
     const tr = document.createElement('tr');
-    const time = new Date(Timer.now.getTime() + 3600000);
+    const time = new Date(Timer.now().getTime() + 3600000);
     tr.innerHTML = `
      <td>Timed:</td>
      <td id="date_arrival">
@@ -70,7 +70,7 @@ export default class TsAttackTimerLibrary {
    const timedActionToDate: Date = new Date(Timer.generateDateFromString(timedAction).getTime() - Timer.getMsFromString(duration))
    const actionButtonElement: HTMLElement = this._container.getElementsByClassName('troop_confirm_go')[0] as HTMLElement
 
-   if (Timer.now.getTime() > (Timer.generateDateFromString(timedAction).getTime()- Timer.getMsFromString(duration))) {
+   if (Timer.now().getTime() > (Timer.generateDateFromString(timedAction).getTime()- Timer.getMsFromString(duration))) {
     alert('Time for attack is already passed!')
     if (this.timedId) clearInterval(this.timedId)
     return
