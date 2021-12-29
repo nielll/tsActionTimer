@@ -23,7 +23,7 @@ class Timer {
         return `(${Math.floor(hours)}:${Math.floor(minutes)}:${Math.floor(seconds)})`;
     }
     static updateTimeDOM(timedAction, timerInputElement, timerInputElementValue, actionButtonElement) {
-        const now = Timer.now.getTime();
+        const now = Timer.now().getTime();
         const timedActionMs = timedAction.getTime() - now;
         const x = setInterval(function () {
             const timeNow = new Date().getTime();
@@ -54,9 +54,9 @@ class Timer {
     }
 }
 exports.default = Timer;
-Timer.now = new Date(Date.now());
+Timer.now = () => new Date(new Date(Date.now()).setMilliseconds(0));
 Timer.correctTimeOffset = (date) => {
-    const timeZoneOffset = Timer.now.getTimezoneOffset() * 60 * 1000;
+    const timeZoneOffset = Timer.now().getTimezoneOffset() * 60 * 1000;
     return new Date(date.getTime() - timeZoneOffset);
 };
 Timer.toString = () => {

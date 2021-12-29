@@ -5,7 +5,7 @@ declare abstract class StaticTiming {
 interface ITimer {
 }
 export default class Timer implements ITimer, StaticTiming {
-    static readonly now: Date;
+    static readonly now: () => Date;
     constructor();
     static getMsFromString(time: string): number;
     static getMsFormated(time: any): string;

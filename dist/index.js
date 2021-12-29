@@ -13,7 +13,7 @@ class TsAttackTimerLibrary {
             const timerElement = this._container.getElementsByClassName('troop_confirm_go')[0];
             const timedActionToDate = new Date(timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration));
             const actionButtonElement = this._container.getElementsByClassName('troop_confirm_go')[0];
-            if (timer_1.default.now.getTime() > (timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration))) {
+            if (timer_1.default.now().getTime() > (timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration))) {
                 alert('Time for attack is already passed!');
                 if (this.timedId)
                     clearInterval(this.timedId);
@@ -45,7 +45,7 @@ class TsAttackTimerLibrary {
             return console.error('tsAttackTimer already running, please refresh and rerun script!');
         //Append tr
         const tr = document.createElement('tr');
-        const time = new Date(timer_1.default.now.getTime() + 3600000);
+        const time = new Date(timer_1.default.now().getTime() + 3600000);
         tr.innerHTML = `
      <td>Timed:</td>
      <td id="date_arrival">
