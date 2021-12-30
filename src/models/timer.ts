@@ -24,13 +24,9 @@ export default class Timer implements ITimer, StaticTiming {
   }
 
   public static getMsFormated(time) {
-    var hours = time / 60 / 60 / 1000
-    var minutes = (time - Math.floor(hours) * 3600 * 1000) / 60 / 1000
-    var seconds =
-      (time -
-        Math.floor(hours) * 3600 * 1000 -
-        Math.floor(minutes) * 60 * 1000) /
-      1000
+    var hours = Math.floor(time / 60 / 60 / 1000)
+    var minutes = Math.floor((time - (hours * 60 * 60 * 1000)) / 60 / 1000)
+    var seconds = Math.floor((time - (hours * 60 * 60 * 1000) - (minutes * 60 * 1000)) / 1000)
 
     return `(${Math.floor(hours)}:${Math.floor(minutes)}:${Math.floor(
       seconds
