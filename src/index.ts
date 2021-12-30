@@ -65,7 +65,12 @@ export default class TsActionTimerLibrary {
    const tbody = this._container.getElementsByTagName('tbody')[0]
    const trs = tbody.getElementsByTagName('tr')
 
-   const duration = trs.length <= 5 ? trs[2].innerHTML : trs[3].innerHTML
+   // Get 'Dauer:' NodeElement
+   const xpath = "//td[text()='Dauer:']"
+   const matchingDurationElement = document.evaluate(xpath, tbody, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.nextSibling
+   const duration = matchingDurationElement.textContent
+   console.log(duration)
+
    const timedAction: string = (this._container.getElementsByClassName('timedAction')[0] as HTMLInputElement).value
    const timerElement: HTMLInputElement = this._container.getElementsByClassName('troop_confirm_go')[0] as HTMLInputElement
    const timedActionToDate: Date = new Date(Timer.generateDateFromString(timedAction).getTime() - Timer.getMsFromString(duration))
