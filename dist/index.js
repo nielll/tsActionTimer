@@ -9,7 +9,7 @@ class TsActionTimerLibrary {
                 workerTimers.clearInterval(this.timedId);
             const tbody = this._container.getElementsByTagName('tbody')[0];
             const trs = tbody.getElementsByTagName('tr');
-            const duration = trs[2].innerHTML;
+            const duration = trs.length <= 5 ? trs[2].innerHTML : trs[3].innerHTML;
             const timedAction = this._container.getElementsByClassName('timedAction')[0].value;
             const timerElement = this._container.getElementsByClassName('troop_confirm_go')[0];
             const timedActionToDate = new Date(timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration));

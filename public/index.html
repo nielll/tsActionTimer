@@ -1692,22 +1692,30 @@
       <input type="hidden" name="village" value="22595">
       <div>
           <table class="vis" width="360">
-              <tbody><tr>
-                  <th colspan="2">
-                                              <span id="default_name_span"><span id="default_name">Befehl</span> <a href="#" onclick="editToggle('default_name_span', 'edit_name')"><img src="graphic/rename.png?1" alt="umbenennen" title="umbenennen"></a></span>
-                          <span id="edit_name" style="display: none;"><input type="text" id="new_attack_name" onkeypress="if( (event.keyCode || event.which) != 13) return true; $('#attack_name_btn').click(); return false;"><input id="attack_name_btn" class="btn" type="button" value="Speichern" onclick="renameAttack('new_attack_name','default_name', 'attack_name');editToggle('edit_name', 'default_name_span');"></span>
-                          <input id="attack_name" name="attack_name" type="hidden" value="">
-                                      </th>
-                              </tr>
-              <tr><td>Ziel:</td><td><span class="village_anchor contexted" data-player="0" data-id="21329"><a href="/game.php?village=22595&amp;screen=info_village&amp;id=21329">Barbarendorf (543|363) K35</a><a class="ctx" href="#"></a></span></td></tr>
-                          <tr><td>Dauer:</td><td>0:40:15</td></tr>
-              <tr>
-                  <td>Ankunft:</td>
-                  <td id="date_arrival">
-                  <span class="relative_time" data-duration="2415">heute um 11:07:22</span>
-                                      </td>
-              </tr>
-                                              </tbody></table>
+           <tbody><tr>
+            <th colspan="2">
+                                        <span id="default_name_span"><span id="default_name">Befehl</span> <a href="#" onclick="editToggle('default_name_span', 'edit_name')"><img src="graphic/rename.png?1" alt="umbenennen" title="umbenennen"></a></span>
+                    <span id="edit_name" style="display: none;"><input type="text" id="new_attack_name" onkeypress="if( (event.keyCode || event.which) != 13) return true; $('#attack_name_btn').click(); return false;"><input id="attack_name_btn" class="btn" type="button" value="Speichern" onclick="renameAttack('new_attack_name','default_name', 'attack_name');editToggle('edit_name', 'default_name_span');"></span>
+                    <input id="attack_name" name="attack_name" type="hidden" value="">
+                                </th>
+                        </tr>
+        <tr><td>Ziel:</td><td><span class="village_anchor contexted" data-player="1576932376" data-id="23339"><a href="/game.php?village=21463&amp;screen=info_village&amp;id=23339">001 (545|360) K35</a><a class="ctx" href="#"></a></span></td></tr>
+                        <tr><td>Spieler:</td><td><a href="/game.php?village=21463&amp;screen=info_player&amp;id=1576932376">F995</a></td></tr>
+                    <tr><td>Dauer:</td><td>3:12:06</td></tr>
+        <tr>
+            <td>Ankunft:</td>
+            <td id="date_arrival">
+            <span class="relative_time" data-duration="11526">heute um 14:04:03</span>
+                                </td>
+        </tr>
+                        <tr><td>Moral:</td><td><b>100%</b></td></tr>
+                                <tr><td colspan="2"><span class="icon header ressources" title="Tragekapazität"></span>79<span class="grey">.</span>150</td></tr>        <tr>
+ <td>Timed:</td>
+ <td id="date_arrival">
+  <input type="text" class="timedAction" value="30.12.2021 10:49:38:0">
+  <button type="button" class="btn setTimedAction">Set Timing</button>
+ </td>
+</tr></tbody></table>
       </div>
   
       <a href="#" id="troop_confirm_train" class="place-confirm-new-attack" style="display: none">
