@@ -71,7 +71,7 @@ export default class TsActionTimerLibrary {
    const timedActionToDate: Date = new Date(Timer.generateDateFromString(timedAction).getTime() - Timer.getMsFromString(duration))
    const actionButtonElement: HTMLElement = this._container.getElementsByClassName('troop_confirm_go')[0] as HTMLElement
 
-   console.log(Timer.now(), Timer.generateDateFromString(timedAction), Timer.getMsFromString(duration))
+   console.log(Timer.now(), Timer.generateDateFromString(timedAction), Timer.getMsFormated(Timer.getMsFromString(duration)), Timer.toString(new Date(Timer.now().getTime() + Timer.getMsFromString(duration))))
    if (Timer.now().getTime() > (Timer.generateDateFromString(timedAction).getTime()- Timer.getMsFromString(duration))) {
     alert('Time for attack is already passed!')
     if (this.timedId) workerTimers.clearInterval(this.timedId)
