@@ -69,14 +69,12 @@ export default class TsActionTimerLibrary {
    const xpath = "//td[text()='Dauer:']"
    const matchingDurationElement = document.evaluate(xpath, tbody, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.nextSibling
    const duration = matchingDurationElement.textContent
-   console.log(duration)
 
    const timedAction: string = (this._container.getElementsByClassName('timedAction')[0] as HTMLInputElement).value
    const timerElement: HTMLInputElement = this._container.getElementsByClassName('troop_confirm_go')[0] as HTMLInputElement
    const timedActionToDate: Date = new Date(Timer.generateDateFromString(timedAction).getTime() - Timer.getMsFromString(duration))
    const actionButtonElement: HTMLElement = this._container.getElementsByClassName('troop_confirm_go')[0] as HTMLElement
 
-   console.log(Timer.now(), Timer.generateDateFromString(timedAction), Timer.getMsFormated(Timer.getMsFromString(duration)), Timer.toString(new Date(Timer.now().getTime() + Timer.getMsFromString(duration))))
    if (Timer.now().getTime() > (Timer.generateDateFromString(timedAction).getTime()- Timer.getMsFromString(duration))) {
     alert('Time for attack is already passed!')
     if (this.timedId) workerTimers.clearInterval(this.timedId)
