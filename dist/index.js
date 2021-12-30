@@ -14,6 +14,7 @@ class TsActionTimerLibrary {
             const timerElement = this._container.getElementsByClassName('troop_confirm_go')[0];
             const timedActionToDate = new Date(timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration));
             const actionButtonElement = this._container.getElementsByClassName('troop_confirm_go')[0];
+            console.log(timer_1.default.now(), timer_1.default.generateDateFromString(timedAction), timer_1.default.getMsFromString(duration));
             if (timer_1.default.now().getTime() > (timer_1.default.generateDateFromString(timedAction).getTime() - timer_1.default.getMsFromString(duration))) {
                 alert('Time for attack is already passed!');
                 if (this.timedId)
