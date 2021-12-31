@@ -85,11 +85,17 @@ export default class TsActionTimerLibrary {
    let startTime = Timer.now().getTime()
 
    const callback = () => {
-    const delayTd = document.createElement('td')
-    delayTd.innerHTML = `(${((new Date()).getTime() - startTime)} ms delay)`
-    const timedTr = this._container.getElementsByClassName('timed')[0]
-    timedTr.appendChild(delayTd)
-    console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms');
+    if (this._container.getElementsByClassName('RequestTime').length === 0) {
+     const delayTd = document.createElement('td')
+     delayTd.classList.add('RequestTime')
+     delayTd.innerHTML = `(${((new Date()).getTime() - startTime)} ms delay)`
+     const timedTr = this._container.getElementsByClassName('timed')[0]
+     timedTr.appendChild(delayTd)
+     console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms')
+    } else {
+     this._container.getElementsByClassName('RequestTime')[0].innerHTML = `(${((new Date()).getTime() - startTime)} ms delay)`
+     console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms')
+    }
    }
 
    fetch('/game.php?', {
