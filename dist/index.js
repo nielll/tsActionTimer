@@ -33,13 +33,13 @@ class TsActionTimerLibrary {
                 alert("Please run on attacking/supporting popup");
         }
         else {
-            console.log('tsAttackTimer initialized');
+            console.log('tsActionTimer initialized');
             container.classList.add('initialized');
             this._container = container;
         }
     }
-    static init(tsAttackTimer) {
-        const container = tsAttackTimer._container;
+    static init(tsActionTimer) {
+        const container = tsActionTimer._container;
         const tbody = container.getElementsByTagName('tbody')[0];
         const trs = tbody.getElementsByTagName('tr');
         if (!container || !tbody || !trs)
@@ -49,6 +49,7 @@ class TsActionTimerLibrary {
             return console.error('tsAttackTimer already running, please refresh and rerun script!');
         //Append tr
         const tr = document.createElement('tr');
+        tr.classList.add('timed');
         const time = new Date(timer_1.default.now().getTime() + 3600000);
         tr.innerHTML = `
      <td>Timed:</td>
@@ -56,17 +57,36 @@ class TsActionTimerLibrary {
       <input type="text" class="timedAction" value="${time.getDate()}.${time.getMonth() + 1}.${time.getFullYear()} ${time.getUTCHours()}:${time.getMinutes()}:${time.getSeconds()}:${time.getMilliseconds()}" />
       <button type="button" class="btn setTimedAction">Set Timing</button>
      </td>
-     <script>
-     $("#command-data-form").submit(function(event){ 
-      event.preventDefault(); 
-     }); 
-     </script>
     `;
         tbody.appendChild(tr);
         tbody.getElementsByClassName('setTimedAction')[0].onclick = function (e) {
             e.preventDefault();
-            tsAttackTimer.execution();
+            tsActionTimer.execution();
+            tsActionTimer.requestTime();
         };
+    }
+    requestTime() {
+        let startTime = (new Date()).getTime(), endTime;
+        const callback = () => {
+            const delayTd = document.createElement('td');
+            delayTd.innerHTML = (endTime - startTime) + "ms";
+            const timedTr = this._container.getElementsByClassName('timed')[0];
+            timedTr.appendChild(delayTd);
+            console.log('Took ' + (endTime - startTime) + 'ms', startTime, endTime);
+        };
+        this.callAjax('https://www.die-staemme.de/page/rules', callback);
+    }
+    callAjax(url, callback) {
+        let xmlhttp;
+        // compatible with IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                callback(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.open("HEAD", url, true);
+        xmlhttp.send();
     }
 }
 exports.default = TsActionTimerLibrary;
