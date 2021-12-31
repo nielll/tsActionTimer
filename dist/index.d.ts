@@ -10,5 +10,4 @@ export default class TsActionTimerLibrary {
     static init(tsActionTimer: TsActionTimerLibrary): void;
     execution: () => void;
     requestTime(): void;
-    private callAjax;
 }

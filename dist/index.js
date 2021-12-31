@@ -74,19 +74,11 @@ class TsActionTimerLibrary {
             timedTr.appendChild(delayTd);
             console.log('Took ' + (endTime - startTime) + 'ms', startTime, endTime);
         };
-        this.callAjax('https://www.die-staemme.de/page/rules', callback);
-    }
-    callAjax(url, callback) {
-        let xmlhttp;
-        // compatible with IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                callback(xmlhttp.responseText);
-            }
-        };
-        xmlhttp.open("HEAD", url, true);
-        xmlhttp.send();
+        fetch('https://www.die-staemme.de', {
+            method: 'HEAD',
+            mode: 'cors',
+            credentials: 'include'
+        }).finally(callback);
     }
 }
 exports.default = TsActionTimerLibrary;
