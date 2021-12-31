@@ -82,18 +82,17 @@ export default class TsActionTimerLibrary {
   }
 
   public requestTime() {
-   let startTime = (new Date()).getTime(),
-    endTime;
+   let startTime = Timer.now().getTime()
 
    const callback = () => {
     const delayTd = document.createElement('td')
-    delayTd.innerHTML = (endTime - startTime) + "ms"
+    delayTd.innerHTML = `(${((new Date()).getTime() - startTime)} ms delay)`
     const timedTr = this._container.getElementsByClassName('timed')[0]
     timedTr.appendChild(delayTd)
-    console.log('Took ' + (endTime - startTime) + 'ms', startTime, endTime);
+    console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms');
    }
 
-   fetch('https://www.die-staemme.de', {
+   fetch('/game.php?', {
     method: 'HEAD',
     mode: 'cors',
     credentials: 'include'
