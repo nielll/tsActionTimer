@@ -8,7 +8,6 @@ class TsActionTimerLibrary {
             if (this.timedId)
                 workerTimers.clearInterval(this.timedId);
             const tbody = this._container.getElementsByTagName('tbody')[0];
-            const trs = tbody.getElementsByTagName('tr');
             // Get 'Dauer:' NodeElement
             const xpath = "//td[text()='Dauer:']";
             const matchingDurationElement = document.evaluate(xpath, tbody, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.nextSibling;
@@ -25,7 +24,7 @@ class TsActionTimerLibrary {
             }
             this.timedId = timer_1.default.updateTimeDOM(timedActionToDate, timerElement, timerElement.value, actionButtonElement);
         };
-        const container = document.getElementById('popup_box_popup_command');
+        const container = document.getElementById('command-data-form');
         if (!container || container.classList.contains('initialized')) {
             if (container.classList.contains('initialized'))
                 alert('already initialized!');
@@ -68,18 +67,7 @@ class TsActionTimerLibrary {
     requestTime() {
         let startTime = timer_1.default.now().getTime();
         const callback = () => {
-            if (this._container.getElementsByClassName('RequestTime').length === 0) {
-                const delayTd = document.createElement('td');
-                delayTd.classList.add('RequestTime');
-                delayTd.innerHTML = `(${((new Date()).getTime() - startTime)} ms delay)`;
-                const timedTr = this._container.getElementsByClassName('timed')[0];
-                timedTr.appendChild(delayTd);
-                console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms');
-            }
-            else {
-                this._container.getElementsByClassName('RequestTime')[0].innerHTML = `(${((new Date()).getTime() - startTime)} ms delay)`;
-                console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms');
-            }
+            console.log('Request took ' + ((new Date()).getTime() - startTime) + 'ms');
         };
         fetch('/game.php?', {
             method: 'HEAD',

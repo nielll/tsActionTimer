@@ -12,7 +12,7 @@ export default class TsActionTimerLibrary {
   private timedId: number
 
   constructor() {
-    const container = document.getElementById('popup_box_popup_command')
+    const container = document.getElementById('command-data-form')
 
     if (!container || container.classList.contains('initialized')) {
       if (container.classList.contains('initialized')) alert('already initialized!')
