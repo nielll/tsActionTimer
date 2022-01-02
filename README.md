@@ -1,8 +1,8 @@
-This script enhances the tribal war game by executing a timed action (attack or support) on the command popup
+This script enhances the tribal war game by executing a timed action (attack or support) on the command popup. The script, more precise the timedout action, is running also when the chrome tab is not focused once a millisecond, due to the usage of web workers.
 
-[ActionTimer](javascript:$.ajaxSetup({dataType:"script"});$.getScript('https://nielll.github.io/tsActionTimer/public/dist/bundle.js').done(function() {tsActionTimer.init(new tsActionTimer())}))
+Copy bookmarklet to your favorit tab: [ActionTimer](javascript:$.ajaxSetup({dataType:"script"});$.getScript('https://nielll.github.io/tsActionTimer/public/dist/bundle.js').done(function() {tsActionTimer.init(new tsActionTimer())}))
 
-Commands:
+Commands to run locally:
 
 ```bash
 # run locally
